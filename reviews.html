@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>آراء العملاء | مراسي كافيه - Marasy Cafe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="i18n.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        marasy: {
+                            dark: '#0B0F19',
+                            navy: '#060d24',
+                            red: '#991B1B',
+                            redLight: '#DC2626',
+                            gold: '#D4AF37',
+                            goldLight: '#F3E5AB'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .navbar-custom-bg {
+            background-image: linear-gradient(to bottom, rgba(6, 13, 36, 0.72), rgba(6, 13, 36, 0.85)), url('nav-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* ظلال واضحة بدون أي حركة رفع */
+        .review-shadow {
+            box-shadow:
+                0 24px 48px -12px rgba(6, 13, 36, 0.24),
+                0 12px 24px -8px rgba(15, 23, 42, 0.16),
+                0 4px 10px -2px rgba(6, 13, 36, 0.12);
+        }
+    </style>
+</head>
+<body data-i18n-title="reviews_title" class="bg-white text-slate-900 font-sans antialiased selection:bg-marasy-gold selection:text-marasy-dark">
+
+    <!-- الشريط العلوي الثابت بنفس شكل وتنسيق vibes.html -->
+    <header class="fixed top-0 left-0 right-0 z-50 navbar-custom-bg bg-marasy-navy border-b border-marasy-gold/30 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+            <!-- يمين الشريط العلوي: مراسي كافيه -->
+            <a href="index.html" class="flex items-center gap-2 group">
+                <i class="fa-solid fa-sailboat text-marasy-redLight text-lg sm:text-xl group-hover:text-marasy-gold transition"></i>
+                <span class="text-lg sm:text-xl font-black tracking-[0.18em] text-marasy-gold uppercase">MARASY</span>
+                <span class="text-xs sm:text-sm text-marasy-gold/90 font-bold">| <span data-i18n="brand_name">مراسي كافيه</span></span>
+            </a>
+
+            <!-- يسار الشريط العلوي: الرئيسية -->
+            <a href="index.html" class="px-3.5 py-1.5 rounded-lg text-xs font-extrabold bg-marasy-gold text-marasy-dark hover:bg-marasy-goldLight transition flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-arrow-right"></i>
+                <span data-i18n="home_btn">الرئيسية</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي على خلفية بيضاء -->
+    <main class="bg-white min-h-screen pt-24 pb-20 px-4 sm:px-8">
+        <section id="reviews-section" class="max-w-6xl mx-auto pt-6">
+            <div class="text-center mb-12">
+                <span data-i18n="reviews_badge" class="text-xs font-bold uppercase tracking-wider text-marasy-red bg-red-50 border border-red-200 px-3.5 py-1 rounded-full">
+                    آراء زبايننا الغاليين
+                </span>
+                <h1 data-i18n="reviews_heading" class="text-2xl sm:text-4xl font-black text-slate-900 mt-3">
+                    إيه بيقولوا عن مراسي كافيه؟
+                </h1>
+                <p data-i18n="reviews_subtext" class="text-slate-600 text-sm sm:text-base mt-2">
+                    تجربة حقيقية من ناس نورونا وقضوا أحلى الأوقات معانا
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- رأي 1 -->
+                <div class="bg-white border border-slate-200/90 rounded-2xl p-6 review-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-marasy-gold mb-3 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                            <span class="lang-ar">"المكان حقيقي تحفة، القاعدة هناك تروق الدم والرووف توب بالليل حكاية تانية خالص! والخدمة فوق الخيال والأجواء كلها طاقة إيجابية."</span>
+                            <span class="lang-en hidden">"The place is truly amazing—the vibe really clears your mind, and the rooftop at night is on another level! Top-notch service and great energy all around."</span>
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-3 border-t border-slate-200/80">
+                        <div class="w-10 h-10 rounded-full bg-marasy-gold/20 text-slate-900 font-bold flex items-center justify-center text-sm">
+                            <span class="lang-ar">أ</span>
+                            <span class="lang-en hidden">A</span>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-slate-900 text-sm">
+                                <span class="lang-ar">أحمد إبراهيم</span>
+                                <span class="lang-en hidden">Ahmed Ibrahim</span>
+                            </h2>
+                            <span data-i18n="verified_visit" class="text-[11px] text-slate-500">زيارة موثقة</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- رأي 2 -->
+                <div class="bg-white border border-slate-200/90 rounded-2xl p-6 review-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-marasy-gold mb-3 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                            <span class="lang-ar">"أحلى كافيه في التجمع بجد! الأجواء هناك مرحة ومبهجة، والقهوة المظبوطة مع قعدة البلايستيشن بتفصل الواحد عن أي ضغط ومشاكل."</span>
+                            <span class="lang-en hidden">"Easily one of the best cafes in New Cairo! Cheerful atmosphere, well-made coffee, and PlayStation sessions that completely disconnect you from stress."</span>
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-3 border-t border-slate-200/80">
+                        <div class="w-10 h-10 rounded-full bg-marasy-gold/20 text-slate-900 font-bold flex items-center justify-center text-sm">
+                            <span class="lang-ar">م</span>
+                            <span class="lang-en hidden">M</span>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-slate-900 text-sm">
+                                <span class="lang-ar">محمود عبد الله</span>
+                                <span class="lang-en hidden">Mahmoud Abdullah</span>
+                            </h2>
+                            <span data-i18n="verified_visit" class="text-[11px] text-slate-500">زيارة موثقة</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- رأي 3 -->
+                <div class="bg-white border border-slate-200/90 rounded-2xl p-6 review-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-marasy-gold mb-3 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                            <span class="lang-ar">"رحت أنا وأصحابي وهناك قضينا أحلى سهرة، القعدة رايقة والناس لطيفة جداً، وكمان المشروبات فريش وطعمها يجنن، تسلم إيدكم."</span>
+                            <span class="lang-en hidden">"Went with friends and had an unforgettable evening. Relaxed seating, very welcoming staff, and fresh drinks that taste great."</span>
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-3 border-t border-slate-200/80">
+                        <div class="w-10 h-10 rounded-full bg-marasy-gold/20 text-slate-900 font-bold flex items-center justify-center text-sm">
+                            <span class="lang-ar">ك</span>
+                            <span class="lang-en hidden">K</span>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-slate-900 text-sm">
+                                <span class="lang-ar">كريم الشريف</span>
+                                <span class="lang-en hidden">Karim El-Sherif</span>
+                            </h2>
+                            <span data-i18n="verified_visit" class="text-[11px] text-slate-500">زيارة موثقة</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- رأي 4 -->
+                <div class="bg-white border border-slate-200/90 rounded-2xl p-6 review-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-marasy-gold mb-3 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                            <span class="lang-ar">"المكان جوه مريح والنظافة والترتيب عالي أوي، والأجواء العامة تخليك عايز تقعد بالساعات من حلاوتها. المكان ده بقى المفضل ليا!"</span>
+                            <span class="lang-en hidden">"Very comfortable indoor seating, spotless cleanliness, and great organization. The overall vibe makes you want to stay for hours. My new favorite spot!"</span>
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-3 border-t border-slate-200/80">
+                        <div class="w-10 h-10 rounded-full bg-marasy-gold/20 text-slate-900 font-bold flex items-center justify-center text-sm">
+                            <span class="lang-ar">م</span>
+                            <span class="lang-en hidden">M</span>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-slate-900 text-sm">
+                                <span class="lang-ar">مصطفى رجب</span>
+                                <span class="lang-en hidden">Mostafa Ragab</span>
+                            </h2>
+                            <span data-i18n="verified_visit" class="text-[11px] text-slate-500">زيارة موثقة</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- رأي 5 -->
+                <div class="bg-white border border-slate-200/90 rounded-2xl p-6 review-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-marasy-gold mb-3 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                            <span class="lang-ar">"من أجمل الكافيهات اللي زرتها، قعدت بره في الـ Outdoor والجو كان هايل والمزيج بين القعدة الرايقة والناس المحترمة حاجة تفتح النفس."</span>
+                            <span class="lang-en hidden">"One of the nicest cafes I've visited. Sat outside in the outdoor area in great weather—calm seating mixed with respectful guests makes it so refreshing."</span>
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-3 border-t border-slate-200/80">
+                        <div class="w-10 h-10 rounded-full bg-marasy-gold/20 text-slate-900 font-bold flex items-center justify-center text-sm">
+                            <span class="lang-ar">إ</span>
+                            <span class="lang-en hidden">I</span>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-slate-900 text-sm">
+                                <span class="lang-ar">إسلام جمال</span>
+                                <span class="lang-en hidden">Islam Gamal</span>
+                            </h2>
+                            <span data-i18n="verified_visit" class="text-[11px] text-slate-500">زيارة موثقة</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- رأي 6 -->
+                <div class="bg-white border border-slate-200/90 rounded-2xl p-6 review-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-1 text-marasy-gold mb-3 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-700 text-sm leading-relaxed mb-4">
+                            <span class="lang-ar">"الخدمة ممتازة والشباب هناك بشوشين جداً والأجواء كلها مرح وحيوية. البيتزا والكريب طعمهم حكاية، لينا قعدة تانية قريب إن شاء الله!"</span>
+                            <span class="lang-en hidden">"Excellent service, super friendly team, and lively energy throughout. The pizza and crepes taste amazing—we'll definitely be back soon!"</span>
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-3 border-t border-slate-200/80">
+                        <div class="w-10 h-10 rounded-full bg-marasy-gold/20 text-slate-900 font-bold flex items-center justify-center text-sm">
+                            <span class="lang-ar">م</span>
+                            <span class="lang-en hidden">M</span>
+                        </div>
+                        <div>
+                            <h2 class="font-bold text-slate-900 text-sm">
+                                <span class="lang-ar">محمد صبري</span>
+                                <span class="lang-en hidden">Mohamed Sabry</span>
+                            </h2>
+                            <span data-i18n="verified_visit" class="text-[11px] text-slate-500">زيارة موثقة</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function syncBilingualSpans(lang) {
+            const isEn = lang === 'en';
+            document.querySelectorAll('.lang-ar').forEach(el => el.classList.toggle('hidden', isEn));
+            document.querySelectorAll('.lang-en').forEach(el => el.classList.toggle('hidden', !isEn));
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.MarasyI18n) {
+                syncBilingualSpans(window.MarasyI18n.getLang());
+                window.MarasyI18n.onChange(syncBilingualSpans);
+            }
+        });
+    </script>
+
+</body>
+</html>

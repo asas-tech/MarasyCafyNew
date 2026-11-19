@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جولة في الكافي | مراسي كافيه - Marasy Cafe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="i18n.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        marasy: {
+                            dark: '#0B0F19',
+                            navy: '#060d24',
+                            red: '#991B1B',
+                            redLight: '#DC2626',
+                            gold: '#D4AF37',
+                            goldLight: '#F3E5AB'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .navbar-custom-bg {
+            background-image: linear-gradient(to bottom, rgba(6, 13, 36, 0.72), rgba(6, 13, 36, 0.85)), url('nav-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .photo-3d-float {
+            box-shadow:
+                0 28px 55px -10px rgba(6, 13, 36, 0.42),
+                0 16px 28px -8px rgba(15, 23, 42, 0.28),
+                0 6px 12px -2px rgba(6, 13, 36, 0.22);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .photo-3d-float:hover {
+            transform: translateY(-9px);
+            box-shadow:
+                0 38px 70px -12px rgba(6, 13, 36, 0.50),
+                0 22px 36px -10px rgba(15, 23, 42, 0.34),
+                0 10px 16px -4px rgba(6, 13, 36, 0.26);
+        }
+    </style>
+</head>
+<body data-i18n-title="tour_title" class="bg-white text-slate-900 font-sans antialiased selection:bg-marasy-gold selection:text-marasy-dark">
+
+    <!-- الشريط العلوي الثابت بنفس شكل وتنسيق vibes.html -->
+    <header class="fixed top-0 left-0 right-0 z-50 navbar-custom-bg bg-marasy-navy border-b border-marasy-gold/30 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+            <!-- يمين الشريط العلوي: مراسي كافيه -->
+            <a href="index.html" class="flex items-center gap-2 group">
+                <i class="fa-solid fa-sailboat text-marasy-redLight text-lg sm:text-xl group-hover:text-marasy-gold transition"></i>
+                <span class="text-lg sm:text-xl font-black tracking-[0.18em] text-marasy-gold uppercase">MARASY</span>
+                <span class="text-xs sm:text-sm text-marasy-gold/90 font-bold">| <span data-i18n="brand_name">مراسي كافيه</span></span>
+            </a>
+
+            <!-- يسار الشريط العلوي: الرئيسية -->
+            <a href="index.html" class="px-3.5 py-1.5 rounded-lg text-xs font-extrabold bg-marasy-gold text-marasy-dark hover:bg-marasy-goldLight transition flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-arrow-right"></i>
+                <span data-i18n="home_btn">الرئيسية</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي على خلفية بيضاء بأسلوب سردي حر غير منتظم مثل vibes.html -->
+    <main class="bg-white min-h-screen pt-24 pb-24 px-4 sm:px-8 overflow-x-hidden">
+        <div class="max-w-6xl mx-auto">
+
+            <!-- مقدمة الجولة داخل الكافيه -->
+            <section class="max-w-3xl mx-auto text-center pt-6 pb-16">
+                <span class="inline-block text-xs font-extrabold tracking-wider text-marasy-red bg-red-50 border border-red-200 px-4 py-1 rounded-full mb-4">
+                    <span class="lang-ar">مراسي كافيه • جولة في الكافي</span>
+                    <span class="lang-en hidden">Marasy Cafe • Inside Cafe Tour</span>
+                </span>
+                <h1 class="text-3xl sm:text-5xl font-black text-slate-900 leading-tight mb-4">
+                    <span class="lang-ar">جولة في الكافي بين الزوايا الدافئة والهواء الطلق</span>
+                    <span class="lang-en hidden">A Tour Inside the Cafe Between Cozy Corners and Open Air</span>
+                </h1>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    <span class="lang-ar">استكشف أركان مراسي كافيه خطوة بخطوة؛ من ركن القراءة والنباتات الخضراء، إلى الصالات المشرقة والجلسات الخارجية المريحة.</span>
+                    <span class="lang-en hidden">Explore Marasy Cafe step by step—from the reading nook and lush greenery to bright halls and comfortable outdoor seating.</span>
+                </p>
+            </section>
+
+            <div class="space-y-24 sm:space-y-32">
+
+                <!-- 1. صورة يمين + وصف شمال -->
+                <section class="relative flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
+                    <div class="w-full lg:w-7/12 lg:mr-auto">
+                        <img src="tour-window-reading-nook.jpg" alt="ركن القراءة والنباتات بجانب النافذة في الكافي" class="w-full h-auto rounded-3xl border border-slate-200/80 photo-3d-float">
+                    </div>
+                    <div data-i18n-align class="w-full lg:w-5/12 lg:mt-20 bg-white/95 p-2 sm:p-4 text-right">
+                        <span class="text-xs font-black text-marasy-red tracking-wider block mb-2">
+                            <span class="lang-ar">01 • ركن النافذة والكتب</span>
+                            <span class="lang-en hidden">01 • Window & Books Nook</span>
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mb-3">
+                            <span class="lang-ar">إضاءة دافئة وخضرة تبعث على السكينة</span>
+                            <span class="lang-en hidden">Warm Lighting & Greenery That Bring Calm</span>
+                        </h2>
+                        <p class="text-slate-700 text-sm sm:text-base leading-loose">
+                            <span class="lang-ar">كرسي مريح بذراعين خشبيين بجوار النافذة مع إضاءة جدارية دافئة، ومكتبة صغيرة تضم كتباً متنوعة ونبتة داخلية خضراء تمنح الزاوية هدوءاً مثالياً للقراءة أو التأمل.</span>
+                            <span class="lang-en hidden">A cozy wooden armchair by the window with warm wall lighting, a small bookshelf with varied reads, and an indoor green plant creating an ideal spot for reading or quiet reflection.</span>
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 2. صورة شمال + وصف يمين -->
+                <section class="relative flex flex-col lg:flex-row-reverse items-center lg:items-end gap-8 lg:gap-12">
+                    <div class="w-full lg:w-6/12 lg:ml-auto">
+                        <img src="tour-colorful-lounge-hall.jpg" alt="صالة الجلوس الملونة والجدارية الفنية في الكافي" class="w-full h-auto rounded-3xl border border-slate-200/80 photo-3d-float">
+                    </div>
+                    <div data-i18n-align class="w-full lg:w-5/12 lg:mb-16 bg-white p-2 sm:p-4 text-right">
+                        <span class="text-xs font-black text-marasy-red tracking-wider block mb-2">
+                            <span class="lang-ar">02 • صالة الألوان والحيوية</span>
+                            <span class="lang-en hidden">02 • Color & Energy Lounge</span>
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mb-3">
+                            <span class="lang-ar">مساحة واسعة مفعمة بالطاقة والبهجة</span>
+                            <span class="lang-en hidden">Spacious Area Full of Energy and Joy</span>
+                        </h2>
+                        <p class="text-slate-700 text-sm sm:text-base leading-loose">
+                            <span class="lang-ar">طاولات مستديرة وكراسي بألوان مبهجة بين الأزرق والبرتقالي والأصفر مع جدارية فنية عصرية وإضاءة نهارية طبيعية تجعل المكان مناسباً للقاءات الأصدقاء والعمل المرن.</span>
+                            <span class="lang-en hidden">Round tables and vibrant chairs in blue, orange, and yellow paired with modern wall art and natural daylight, making it great for friend meetups and flexible work.</span>
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 3. صورة يمين + وصف شمال -->
+                <section class="relative flex flex-col lg:flex-row items-center lg:items-center gap-8 lg:gap-12">
+                    <div class="w-full lg:w-6/12 lg:mr-auto">
+                        <img src="tour-open-door-window-table.jpg" alt="مدخل الكافي المفتوح وطاولة بجانب النافذة" class="w-full h-auto rounded-3xl border border-slate-200/80 photo-3d-float">
+                    </div>
+                    <div data-i18n-align class="w-full lg:w-5/12 bg-white p-2 sm:p-4 text-right">
+                        <span class="text-xs font-black text-marasy-red tracking-wider block mb-2">
+                            <span class="lang-ar">03 • إطلالة المدخل والنافذة</span>
+                            <span class="lang-en hidden">03 • Entrance & Window View</span>
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mb-3">
+                            <span class="lang-ar">ترحيب مفتوح وضوء طبيعي ينساب للداخل</span>
+                            <span class="lang-en hidden">An Open Welcome and Natural Light Flowing In</span>
+                        </h2>
+                        <p class="text-slate-700 text-sm sm:text-base leading-loose">
+                            <span class="lang-ar">أبواب زجاجية واسعة ترحب بالضيوف مع طاولة خشبية وكراسي سوداء أنيقة تطل على نافذة كبيرة مزينة بالنباتات، لتجمع بين دفء الحوائط الحجرية ونسمات الخارج.</span>
+                            <span class="lang-en hidden">Wide glass doors welcome guests alongside a wooden table and sleek black chairs overlooking a large plant-lined window, blending stone warmth with outdoor breezes.</span>
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 4. صورة شمال + وصف يمين -->
+                <section class="relative flex flex-col lg:flex-row-reverse items-center lg:items-start gap-8 lg:gap-12">
+                    <div class="w-full lg:w-7/12 lg:ml-auto">
+                        <img src="tour-bright-minimal-hall.jpg" alt="الصالة المضيئة بديكور أبيض وخشبي ونباتات معلقة" class="w-full h-auto rounded-3xl border border-slate-200/80 photo-3d-float">
+                    </div>
+                    <div data-i18n-align class="w-full lg:w-4/12 lg:mt-14 bg-white p-2 sm:p-4 text-right">
+                        <span class="text-xs font-black text-marasy-red tracking-wider block mb-2">
+                            <span class="lang-ar">04 • أناقة الضوء والخشب</span>
+                            <span class="lang-en hidden">04 • Light & Wood Elegance</span>
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mb-3">
+                            <span class="lang-ar">صفاء الألوان البيضاء مع لمسات الخشب والنباتات</span>
+                            <span class="lang-en hidden">Crisp White Tones with Wood & Hanging Plants</span>
+                        </h2>
+                        <p class="text-slate-700 text-sm sm:text-base leading-loose">
+                            <span class="lang-ar">تناغم راقٍ بين الطاولات الخشبية والكراسي البيضاء والمصابيح الكروية الدافئة والنباتات المتدلية على الجدران، مما يمنح الجلسة إحساساً بالاتساع والراحة البصرية.</span>
+                            <span class="lang-en hidden">A refined harmony of wooden tables, white chairs, warm globe lamps, and trailing wall plants that gives the space an open, visually soothing feel.</span>
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 5. صورة يمين + وصف شمال -->
+                <section class="relative flex flex-col lg:flex-row items-center lg:items-end gap-8 lg:gap-12">
+                    <div class="w-full lg:w-6/12 lg:mr-auto">
+                        <img src="tour-shaded-patio-awning.jpg" alt="جلسة خارجية مظللة بمظلة خضراء وأحواض نباتات" class="w-full h-auto rounded-3xl border border-slate-200/80 photo-3d-float">
+                    </div>
+                    <div data-i18n-align class="w-full lg:w-5/12 lg:mb-12 bg-white p-2 sm:p-4 text-right">
+                        <span class="text-xs font-black text-marasy-red tracking-wider block mb-2">
+                            <span class="lang-ar">05 • ركن المظلة الخضراء</span>
+                            <span class="lang-en hidden">05 • Green Awning Corner</span>
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mb-3">
+                            <span class="lang-ar">جلسة خارجية هادئة محاطة بالخضرة</span>
+                            <span class="lang-en hidden">Calm Outdoor Seating Surrounded by Greenery</span>
+                        </h2>
+                        <p class="text-slate-700 text-sm sm:text-base leading-loose">
+                            <span class="lang-ar">طاولة مستديرة وكراسي مضفرة تحت مظلة خضراء أنيقة بجوار الواجهة الزجاجية، تحيط بها أحواض النباتات والزهور لتستمتع بالهواء الطلق في أجواء مريحة.</span>
+                            <span class="lang-en hidden">A round table and woven chairs under a stylish green awning beside the glass facade, framed by planters and flowers for relaxed open-air seating.</span>
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 6. صورة شمال + وصف يمين -->
+                <section class="relative flex flex-col lg:flex-row-reverse items-center lg:items-start gap-8 lg:gap-12">
+                    <div class="w-full lg:w-7/12 lg:ml-auto">
+                        <img src="tour-sidewalk-bistro-tables.jpg" alt="طاولات خارجية بمفارش بيضاء وكراسي حديدية مزخرفة" class="w-full h-auto rounded-3xl border border-slate-200/80 photo-3d-float">
+                    </div>
+                    <div data-i18n-align class="w-full lg:w-4/12 lg:mt-14 bg-white p-2 sm:p-4 text-right">
+                        <span class="text-xs font-black text-marasy-red tracking-wider block mb-2">
+                            <span class="lang-ar">06 • جلسة الرصيف الكلاسيكية</span>
+                            <span class="lang-en hidden">06 • Classic Bistro Seating</span>
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mb-3">
+                            <span class="lang-ar">طاولات خارجية أنيقة على امتداد الواجهة</span>
+                            <span class="lang-en hidden">Elegant Outdoor Tables Along the Facade</span>
+                        </h2>
+                        <p class="text-slate-700 text-sm sm:text-base leading-loose">
+                            <span class="lang-ar">كراسي حديدية مزخرفة وطاولات بمفارش بيضاء مرتبة على امتداد الواجهة الخارجية، تمنحك تجربة جلوس كلاسيكية راقية للاستمتاع بالمشروب ومراقبة حيوية المكان.</span>
+                            <span class="lang-en hidden">Ornate iron chairs and crisp white-clothed tables arranged along the exterior facade, offering a classic setting to enjoy your drink and watch the street come alive.</span>
+                        </p>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function syncBilingualSpans(lang) {
+            const isEn = lang === 'en';
+            document.querySelectorAll('.lang-ar').forEach(el => el.classList.toggle('hidden', isEn));
+            document.querySelectorAll('.lang-en').forEach(el => el.classList.toggle('hidden', !isEn));
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.MarasyI18n) {
+                syncBilingualSpans(window.MarasyI18n.getLang());
+                window.MarasyI18n.onChange(syncBilingualSpans);
+            }
+        });
+    </script>
+
+</body>
+</html>

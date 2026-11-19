@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المنيو الرقمي | مراسي كافيه - Marasy Cafe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="i18n.js"></script>
+
+    <!-- زر معلق باللون الذهبي للانتقال المباشر إلى صفحة الحجوزات -->
+    <a href="bookings.html"
+       data-i18n-aria="complete_booking_fab" aria-label="الانتقال إلى الحجوزات"
+       class="fixed bottom-5 left-5 z-50 bg-marasy-gold hover:bg-marasy-goldLight text-marasy-dark font-extrabold py-3 px-5 rounded-full shadow-2xl flex items-center gap-2.5 transition transform hover:scale-105 border-2 border-white/30">
+        <i class="fa-regular fa-calendar-check text-xl"></i>
+        <span data-i18n="complete_booking_fab" class="text-sm">إتمام الحجز</span>
+    </a>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        marasy: {
+                            dark: '#0B0F19',
+                            navy: '#060d24',
+                            red: '#991B1B',
+                            redLight: '#DC2626',
+                            gold: '#D4AF37',
+                            goldLight: '#F3E5AB'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .navbar-custom-bg {
+            background-image: linear-gradient(to bottom, rgba(6, 13, 36, 0.72), rgba(6, 13, 36, 0.85)), url('nav-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body data-i18n-title="menu_title" class="bg-white text-slate-900 font-sans antialiased selection:bg-marasy-gold selection:text-marasy-dark">
+
+    <!-- الشريط العلوي الثابت -->
+    <header class="fixed top-0 left-0 right-0 z-50 navbar-custom-bg border-b border-marasy-gold/30 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-3 pb-2.5">
+            <div class="flex items-center justify-between gap-3 pb-2.5 border-b border-marasy-gold/15">
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <i class="fa-solid fa-sailboat text-marasy-redLight text-lg sm:text-xl group-hover:text-marasy-gold transition"></i>
+                    <span class="text-lg sm:text-xl font-black tracking-[0.18em] text-marasy-gold uppercase">MARASY</span>
+                    <span class="hidden sm:inline text-xs text-marasy-gold/85 font-bold">| <span data-i18n="brand_name">مراسي كافيه</span></span>
+                </a>
+
+                <a href="index.html" class="px-3.5 py-1.5 rounded-lg text-xs font-extrabold bg-marasy-gold text-marasy-dark hover:bg-marasy-goldLight transition flex items-center gap-1.5 shadow">
+                    <i class="fa-solid fa-arrow-right"></i>
+                    <span data-i18n="home_btn">الرئيسية</span>
+                </a>
+            </div>
+
+            <nav id="categoryNav" data-i18n-aria="menu_heading" aria-label="أقسام المنيو" class="flex items-center justify-start lg:justify-center gap-2 overflow-x-auto no-scrollbar pt-2.5 pb-1">
+                <button type="button" onclick="selectCategory('all')" data-cat="all" data-i18n="cat_all" class="cat-tab whitespace-nowrap px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-extrabold bg-marasy-gold text-marasy-dark transition shrink-0 cursor-pointer">
+                    الكل
+                </button>
+                <button type="button" onclick="selectCategory('hot')" data-cat="hot" data-i18n="cat_hot" class="cat-tab whitespace-nowrap px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-marasy-dark/80 text-marasy-gold hover:text-marasy-goldLight border border-marasy-gold/30 transition shrink-0 cursor-pointer">
+                    ☕ المشروبات الساخنة
+                </button>
+                <button type="button" onclick="selectCategory('cold')" data-cat="cold" data-i18n="cat_cold" class="cat-tab whitespace-nowrap px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-marasy-dark/80 text-marasy-gold hover:text-marasy-goldLight border border-marasy-gold/30 transition shrink-0 cursor-pointer">
+                    🥤 الباردة والميلك شيك
+                </button>
+                <button type="button" onclick="selectCategory('juices')" data-cat="juices" data-i18n="cat_juices" class="cat-tab whitespace-nowrap px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-marasy-dark/80 text-marasy-gold hover:text-marasy-goldLight border border-marasy-gold/30 transition shrink-0 cursor-pointer">
+                    🍹 العصائر والسموزي
+                </button>
+                <button type="button" onclick="selectCategory('crepes')" data-cat="crepes" data-i18n="cat_crepes" class="cat-tab whitespace-nowrap px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-marasy-dark/80 text-marasy-gold hover:text-marasy-goldLight border border-marasy-gold/30 transition shrink-0 cursor-pointer">
+                    🌯 الكريب
+                </button>
+                <button type="button" onclick="selectCategory('pasta')" data-cat="pasta" data-i18n="cat_pasta" class="cat-tab whitespace-nowrap px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-marasy-dark/80 text-marasy-gold hover:text-marasy-goldLight border border-marasy-gold/30 transition shrink-0 cursor-pointer">
+                    🍝 الباستا
+                </button>
+                <button type="button" onclick="selectCategory('pizza')" data-cat="pizza" data-i18n="cat_pizza" class="cat-tab whitespace-nowrap px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-marasy-dark/80 text-marasy-gold hover:text-marasy-goldLight border border-marasy-gold/30 transition shrink-0 cursor-pointer">
+                    🍕 البيتزا
+                </button>
+                <button type="button" onclick="selectCategory('desserts')" data-cat="desserts" data-i18n="cat_desserts" class="cat-tab whitespace-nowrap px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-marasy-dark/80 text-marasy-gold hover:text-marasy-goldLight border border-marasy-gold/30 transition shrink-0 cursor-pointer">
+                    🍰 الحلويات
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي على خلفية بيضاء -->
+    <main class="bg-white min-h-screen pt-32 sm:pt-36 pb-16 px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto">
+
+            <div class="text-center mb-12 pb-6 border-b border-slate-200">
+                <span data-i18n="menu_badge" class="inline-block text-xs font-extrabold uppercase tracking-wider text-marasy-red bg-red-50 border border-red-200 px-3.5 py-1 rounded-full">
+                    مراسي كافيه | Marasy Cafe
+                </span>
+                <h1 data-i18n="menu_heading" class="text-3xl sm:text-4xl font-black text-slate-900 mt-3">
+                    المنيو الرقمي
+                </h1>
+                 
+            </div>
+
+            <div id="menuSectionsContainer" class="space-y-16 opacity-0 transition-opacity duration-150"></div>
+
+            <div class="mt-14 bg-white border border-slate-200 rounded-2xl p-5 text-center shadow-sm">
+                <p data-i18n="menu_disclaimer" class="text-slate-700 font-bold text-sm">
+                    ملاحظة هامة: الأسعار قابلة للتغيير، الرجاء الرجوع لإدارة الكافيه للتأكيد.
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        const menuSections = [
+            {
+                id: 'hot',
+                title: { ar: 'المشروبات الساخنة (Hot Drinks)', en: 'Hot Drinks' },
+                icon: 'fa-mug-hot',
+                type: 'standard',
+                items: [
+                    { id: 'hot-lipton', name: { ar: 'شاي ليبتون', en: 'Lipton Tea' }, price: '15', img: 'lipton-tea.jpg' },
+                    { id: 'hot-mint', name: { ar: 'شاي نعناع', en: 'Mint Tea' }, price: '15', img: 'mint-tea.jpg' },
+                    { id: 'hot-herbs', name: { ar: 'نعناع / ينسون / كركدية', en: 'Mint / Anise / Hibiscus' }, price: '15', img: 'herbs-mint-anise-hibiscus.jpg' },
+                    { id: 'hot-lemon-tea', name: { ar: 'شاي باليمون', en: 'Lemon Tea' }, price: '15', img: 'lemon-tea.jpg' },
+                    { id: 'hot-green-fruit-tea', name: { ar: 'شاي أخضر / شاي فواكه', en: 'Green Tea / Fruit Tea' }, price: '15', img: 'green-fruit-tea.jpg' },
+                    { id: 'hot-tea-milk', name: { ar: 'شاي بحليب', en: 'Tea with Milk' }, price: '20', img: 'tea-milk.jpg' },
+                    { id: 'hot-turkish-coffee', name: { ar: 'قهوة تركي', en: 'Turkish Coffee' }, price: '20', img: 'turkish-coffee.jpg' },
+                    { id: 'hot-espresso', name: { ar: 'أسبرسو', en: 'Espresso' }, price: '25', img: 'espresso.jpg' },
+                    { id: 'hot-american-coffee', name: { ar: 'أمريكان كوفي', en: 'American Coffee' }, price: '30', img: 'american-coffee.jpg' },
+                    { id: 'hot-nescafe-hazelnut', name: { ar: 'نسكافيه بندق / فانيليا / كارميل', en: 'Nescafe Hazelnut / Vanilla / Caramel' }, price: '35', img: 'nescafe-hazelnut.jpg' },
+                    { id: 'hot-homos', name: { ar: 'حمص الشام', en: 'Homos El Sham' }, price: '25', img: 'homos-el-sham.jpg' },
+                    { id: 'hot-cinnamon-ginger', name: { ar: 'قرفة زنجبيل ميلك', en: 'Cinnamon Ginger Milk' }, price: '25', img: 'cinnamon-ginger-milk.jpg' },
+                    { id: 'hot-sahlab', name: { ar: 'سحلب سادة', en: 'Plain Sahlab' }, price: '30', img: 'sahlab.jpg' },
+                    { id: 'hot-chocolate', name: { ar: 'هوت شوكلت', en: 'Hot Chocolate' }, price: '30', img: 'hot-chocolate.jpg' }
+                ]
+            },
+            {
+                id: 'cold',
+                title: { ar: 'المشروبات الباردة والميلك شيك (Cold Drinks & Milkshakes)', en: 'Cold Drinks & Milkshakes' },
+                icon: 'fa-glass-water',
+                type: 'standard',
+                items: [
+                    { id: 'cold-iced-latte', name: { ar: 'آيس كابتشينو / آيس لاتيه', en: 'Iced Cappuccino / Iced Latte' }, price: '35', img: 'iced-latte.jpg' },
+                    { id: 'cold-iced-choco', name: { ar: 'آيس شوكلت / آيس موكا', en: 'Iced Chocolate / Iced Mocha' }, price: '35', img: 'iced-chocolate.jpg' },
+                    { id: 'cold-pepsi', name: { ar: 'بيبسي / سفن أب', en: 'Pepsi / 7Up' }, price: '20', img: 'pepsi.jpg' },
+                    { id: 'cold-redbull', name: { ar: 'ريد بول', en: 'Red Bull' }, price: '40', img: 'red-bull.jpg' },
+                    { id: 'cold-water', name: { ar: 'مياه معدنية', en: 'Mineral Water' }, price: '10', img: 'mineral-water.jpg' }
+                ]
+            },
+            {
+                id: 'juices',
+                title: { ar: 'العصائر الطبيعية والسموزي (Fresh Juices & Smoothies)', en: 'Fresh Juices & Smoothies' },
+                icon: 'fa-blender',
+                type: 'standard',
+                items: [
+                    { id: 'juice-lemon', name: { ar: 'عصير ليمون فريش', en: 'Fresh Lemon Juice' }, price: '25', img: 'lemon-juice.jpg' },
+                    { id: 'juice-mango', name: { ar: 'عصير مانجو', en: 'Mango Juice' }, price: '35', img: 'mango-juice.jpg' },
+                    { id: 'juice-guava', name: { ar: 'عصير جوافة', en: 'Guava Juice' }, price: '35', img: 'guava-juice.jpg' },
+                    { id: 'juice-orange', name: { ar: 'عصير برتقال', en: 'Orange Juice' }, price: '35', img: 'orange-juice.jpg' },
+                    { id: 'juice-dates-milk', name: { ar: 'عصير بلح باللبن', en: 'Dates with Milk' }, price: '35', img: 'dates-milk-juice.jpg' }
+                ]
+            },
+            {
+                id: 'crepes',
+                title: { ar: 'ركن الكريب (Crepes)', en: 'Crepes' },
+                icon: 'fa-burger',
+                type: 'standard',
+                items: [
+                    { id: 'crepe-potato', name: { ar: 'كريب بطاطس', en: 'Potato Crepe' }, price: '25', img: 'potato-crepe.jpg' },
+                    { id: 'crepe-crispy', name: { ar: 'كريب تشيكن كريسبي', en: 'Chicken Crispy Crepe' }, price: '40', img: 'chicken-crispy-crepe.jpg' },
+                    { id: 'crepe-hotdog', name: { ar: 'كريب هوت دوج', en: 'Hotdog Crepe' }, price: '40', img: 'hotdog-crepe.jpg' },
+                    { id: 'crepe-cheese', name: { ar: 'كريب مشكل جبن', en: 'Mixed Cheese Crepe' }, price: '40', img: 'mixed-cheese-crepe.jpg' },
+                    { id: 'crepe-kofta', name: { ar: 'كريب كفتة', en: 'Kofta Crepe' }, price: '40', img: 'kofta-crepe.jpg' },
+                    { id: 'crepe-mushroom', name: { ar: 'كريب تشيكن مشروم', en: 'Chicken Mushroom Crepe' }, price: '45', img: 'chicken-mushroom-crepe.jpg' },
+                    { id: 'crepe-shish', name: { ar: 'كريب شيش طاووق', en: 'Shish Tawook Crepe' }, price: '45', img: 'shish-tawook-crepe.jpg' }
+                ]
+            },
+            {
+                id: 'pasta',
+                title: { ar: 'ركن الباستا (Pasta)', en: 'Pasta' },
+                icon: 'fa-bowl-food',
+                type: 'standard',
+                items: [
+                    { id: 'pasta-red', name: { ar: 'باستا ريد صوص', en: 'Red Sauce Pasta' }, price: '30', img: 'red-sauce-pasta.jpg' },
+                    { id: 'pasta-liver', name: { ar: 'مكرونة كبدة', en: 'Liver Pasta' }, price: '35', img: 'liver-pasta.jpg' },
+                    { id: 'pasta-white-mushroom', name: { ar: 'باستا وايت صوص مشروم', en: 'White Sauce Mushroom Pasta' }, price: '40', img: 'white-sauce-mushroom-pasta.jpg' },
+                    { id: 'pasta-negresco', name: { ar: 'بينا نجرسكو', en: 'Penne Negresco' }, price: '50', img: 'penne-negresco.jpg' }
+                ]
+            },
+            {
+                id: 'pizza',
+                title: { ar: 'ركن البيتزا الإيطالية (Pizza)', en: 'Italian Pizza' },
+                icon: 'fa-pizza-slice',
+                type: 'pizza',
+                items: [
+                    { id: 'pizza-margherita', name: { ar: 'بيتزا مارجريتا', en: 'Margherita Pizza' }, m: '50', l: '60', xl: '75', img: 'margherita-pizza.jpg' },
+                    { id: 'pizza-veggie', name: { ar: 'بيتزا خضروات', en: 'Veggie Pizza' }, m: '55', l: '65', xl: '75', img: 'veggie-pizza.jpg' },
+                    { id: 'pizza-salami', name: { ar: 'بيتزا سلامي', en: 'Salami Pizza' }, m: '60', l: '75', xl: '90', img: 'salami-pizza.jpg' },
+                    { id: 'pizza-mushroom', name: { ar: 'بيتزا فونجي (مشروم)', en: 'Funghi (Mushroom) Pizza' }, m: '60', l: '75', xl: '90', img: 'mushroom-pizza.jpg' },
+                    { id: 'pizza-hotdog', name: { ar: 'بيتزا هوت دوج', en: 'Hotdog Pizza' }, m: '60', l: '75', xl: '90', img: 'hotdog-pizza.jpg' },
+                    { id: 'pizza-four-cheese', name: { ar: 'بيتزا فورماج (جبن)', en: 'Four Cheese Pizza' }, m: '60', l: '75', xl: '90', img: 'four-cheese-pizza.jpg' },
+                    { id: 'pizza-chicken', name: { ar: 'بيتزا بولو (دجاج)', en: 'Chicken Pizza' }, m: '60', l: '75', xl: '90', img: 'chicken-pizza.jpg' },
+                    { id: 'pizza-supreme', name: { ar: 'بيتزا سوبر سوبريم', en: 'Super Supreme Pizza' }, m: '60', l: '75', xl: '90', img: 'super-supreme-pizza.jpg' },
+                    { id: 'pizza-tuna', name: { ar: 'بيتزا تونة', en: 'Tuna Pizza' }, m: '60', l: '75', xl: '90', img: 'tuna-pizza.jpg' }
+                ]
+            },
+            {
+                id: 'desserts',
+                title: { ar: 'الحلويات (Desserts)', en: 'Desserts' },
+                icon: 'fa-cake-candles',
+                type: 'standard',
+                items: [
+                    { id: 'dessert-nutella-crepe', name: { ar: 'كريب نوتيلا', en: 'Nutella Crepe' }, price: '30', img: 'nutella-crepe.jpg' },
+                    { id: 'dessert-fruit-crepe', name: { ar: 'كريب فواكه', en: 'Fruit Crepe' }, price: '45', img: 'fruit-crepe.jpg' },
+                    { id: 'dessert-oreo', name: { ar: 'أوريو مادنيس', en: 'Oreo Madness' }, price: '45', img: 'oreo-madness.jpg' },
+                    { id: 'dessert-fruit-salad', name: { ar: 'فروت سلاط مراسي', en: 'Marasy Fruit Salad' }, price: '45', img: 'marasy-fruit-salad.jpg' },
+                    { id: 'dessert-molten', name: { ar: 'مولتن كيك', en: 'Molten Cake' }, price: '50', special: true, img: 'molten-cake.jpg' }
+                ]
+            }
+        ];
+
+        const ORDERS_STORAGE_KEY = 'marasy_customer_orders_v1';
+        const itemQuantities = {};
+        let currentSelectedCategory = 'all';
+
+        function getCurrentLang() {
+            return window.MarasyI18n ? window.MarasyI18n.getLang() : 'ar';
+        }
+
+        function tr(key, fallback) {
+            return window.MarasyI18n ? window.MarasyI18n.t(key, fallback) : fallback;
+        }
+
+        function pickText(val) {
+            if (val && typeof val === 'object') {
+                const lang = getCurrentLang();
+                return val[lang] || val.ar || val.en || '';
+            }
+            return val || '';
+        }
+
+        function findOrderMeta(key) {
+            const parts = key.split('__');
+            const baseId = parts[0];
+            const sizeCode = parts[1] || null;
+
+            const sizeAr = { m: 'وسط (M)', l: 'كبير (L)', xl: 'عائلي (XL)' };
+            const sizeEn = { m: 'Medium (M)', l: 'Large (L)', xl: 'Family (XL)' };
+
+            for (const sec of menuSections) {
+                for (const item of sec.items) {
+                    if (item.id === baseId) {
+                        const baseAr = typeof item.name === 'object' ? item.name.ar : item.name;
+                        const baseEn = typeof item.name === 'object' ? item.name.en : item.name;
+                        const nameAr = sizeCode ? `${baseAr} (${sizeAr[sizeCode] || sizeCode})` : baseAr;
+                        const nameEn = sizeCode ? `${baseEn} (${sizeEn[sizeCode] || sizeCode})` : baseEn;
+                        const activeName = getCurrentLang() === 'en' ? nameEn : nameAr;
+                        return { key, name: activeName, name_ar: nameAr, name_en: nameEn };
+                    }
+                }
+            }
+            return { key, name: key, name_ar: key, name_en: key };
+        }
+
+        function syncOrdersToStorage() {
+            try {
+                const ordersList = [];
+                Object.keys(itemQuantities).forEach(key => {
+                    const qty = itemQuantities[key];
+                    if (typeof qty === 'number' && qty > 0) {
+                        const meta = findOrderMeta(key);
+                        ordersList.push({
+                            key: meta.key,
+                            name: meta.name,
+                            name_ar: meta.name_ar,
+                            name_en: meta.name_en,
+                            qty: qty
+                        });
+                    }
+                });
+                sessionStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(ordersList));
+            } catch (e) {}
+        }
+
+        function hydrateQuantitiesFromStorage() {
+            try {
+                localStorage.removeItem(ORDERS_STORAGE_KEY);
+                const raw = sessionStorage.getItem(ORDERS_STORAGE_KEY);
+                const parsed = raw ? JSON.parse(raw) : [];
+                if (Array.isArray(parsed)) {
+                    parsed.forEach(entry => {
+                        if (entry && entry.key && typeof entry.qty === 'number' && entry.qty > 0) {
+                            itemQuantities[entry.key] = entry.qty;
+                        }
+                    });
+                }
+            } catch (e) {}
+        }
+
+        function getQty(key) {
+            return typeof itemQuantities[key] === 'number' ? itemQuantities[key] : 0;
+        }
+
+        function changeQty(key, delta) {
+            const current = getQty(key);
+            const next = Math.max(0, current + delta);
+            itemQuantities[key] = next;
+            syncOrdersToStorage();
+            renderAllSections(currentSelectedCategory);
+        }
+
+        function buildQtyCounter(key) {
+            const qty = getQty(key);
+            const dirAttr = getCurrentLang() === 'en' ? 'ltr' : 'rtl';
+            return `
+                <div class="inline-flex items-center gap-1.5 shrink-0" dir="${dirAttr}">
+                    <button
+                        type="button"
+                        onclick="changeQty('${key}', 1)"
+                        aria-label="${tr('qty_inc_aria', 'زيادة الكمية')}"
+                        class="w-7 h-7 rounded-full bg-marasy-navy hover:bg-slate-900 text-white flex items-center justify-center text-xs font-black shadow-sm transition cursor-pointer"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                    </button>
+                    <span class="min-w-[1.5rem] text-center text-sm font-black text-slate-900 select-none">
+                        ${qty}
+                    </span>
+                    <button
+                        type="button"
+                        onclick="changeQty('${key}', -1)"
+                        aria-label="${tr('qty_dec_aria', 'تقليل الكمية')}"
+                        class="w-7 h-7 rounded-full bg-marasy-navy hover:bg-slate-900 text-white flex items-center justify-center text-xs font-black shadow-sm transition cursor-pointer"
+                    >
+                        <i class="fa-solid fa-minus"></i>
+                    </button>
+                </div>
+            `;
+        }
+
+        function handleImgError(imgEl, baseName) {
+            const step = Number(imgEl.dataset.fallbackStep || 0);
+            const fallbacks = ['.png', '.webp', '.jpeg', '.JPG', '.PNG'];
+            if (step < fallbacks.length) {
+                imgEl.dataset.fallbackStep = String(step + 1);
+                imgEl.src = baseName + fallbacks[step];
+            } else {
+                imgEl.classList.add('hidden');
+                const notice = imgEl.nextElementSibling;
+                if (notice) notice.classList.remove('hidden');
+            }
+        }
+
+        function buildImageBox(item) {
+            const dotIdx = item.img.lastIndexOf('.');
+            const baseName = dotIdx > -1 ? item.img.slice(0, dotIdx) : item.img;
+            const itemName = pickText(item.name);
+            return `
+                <div class="relative w-full h-44 bg-white border-b border-slate-200 flex items-center justify-center overflow-hidden">
+                    <img
+                        src="${item.img}"
+                        alt="${itemName}"
+                        data-fallback-step="0"
+                        onerror="handleImgError(this, '${baseName}')"
+                        loading="lazy"
+                        class="w-full h-full object-cover"
+                    />
+                    <div class="hidden flex-col items-center justify-center text-center p-3 text-slate-400 select-none">
+                        <i class="fa-regular fa-image text-2xl mb-1 text-slate-300"></i>
+                        <span class="text-[11px] font-bold text-slate-500" dir="ltr">${item.img}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildPizzaSizeRow(itemId, sizeCode, label, price) {
+            const sizeKey = `${itemId}__${sizeCode}`;
+            const currencyText = tr('currency', 'ج.م');
+            return `
+                <div class="flex items-center justify-between gap-2 bg-white border border-slate-200 rounded-xl px-3 py-2">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-extrabold text-slate-900">${label}</span>
+                        <span class="text-xs font-black text-marasy-red bg-red-50 border border-red-100 px-2 py-0.5 rounded-md">${price} ${currencyText}</span>
+                    </div>
+                    ${buildQtyCounter(sizeKey)}
+                </div>
+            `;
+        }
+
+        function renderAllSections(activeCategory = 'all') {
+            currentSelectedCategory = activeCategory;
+            const container = document.getElementById('menuSectionsContainer');
+            if (!container) return;
+            container.innerHTML = '';
+
+            const currencyText = tr('currency', 'ج.م');
+            const itemsSuffix = tr('items_count_suffix', 'صنف');
+            const priceLabel = tr('price_label', 'السعر');
+            const recommendedText = tr('recommended_badge', 'مُوصى به');
+
+            menuSections.forEach(section => {
+                if (activeCategory !== 'all' && section.id !== activeCategory) return;
+                if (!section.items || section.items.length === 0) return;
+
+                const sectionTitle = pickText(section.title);
+                const sectionEl = document.createElement('section');
+                sectionEl.id = `section-${section.id}`;
+                sectionEl.className = 'bg-white scroll-mt-36';
+
+                const headerHTML = `
+                    <div class="flex items-center justify-between border-b-2 border-marasy-red pb-3 mb-6">
+                        <h2 class="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2.5">
+                            <i class="fa-solid ${section.icon} text-marasy-redLight"></i>
+                            <span>${sectionTitle}</span>
+                        </h2>
+                        <span class="text-xs font-bold text-slate-600 bg-white border border-slate-200 px-3 py-1 rounded-full">
+                            ${section.items.length} ${itemsSuffix}
+                        </span>
+                    </div>
+                `;
+
+                let cardsHTML = `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 bg-white">`;
+
+                section.items.forEach(item => {
+                    const imageBox = buildImageBox(item);
+                    const itemName = pickText(item.name);
+                    const specialBadge = item.special
+                        ? `<span class="inline-block text-[10px] bg-marasy-red text-white px-2 py-0.5 rounded-full mx-1.5 font-bold align-middle">${recommendedText}</span>`
+                        : '';
+
+                    if (section.type === 'pizza') {
+                        cardsHTML += `
+                            <article class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                                ${imageBox}
+                                <div class="p-4 bg-white flex-1 flex flex-col justify-between gap-3">
+                                    <h3 class="font-extrabold text-slate-900 text-base leading-snug bg-white">
+                                        ${itemName} ${specialBadge}
+                                    </h3>
+                                    <div class="flex flex-col gap-2 pt-2 border-t border-slate-100">
+                                        ${buildPizzaSizeRow(item.id, 'm', tr('size_m', 'وسط (M)'), item.m)}
+                                        ${buildPizzaSizeRow(item.id, 'l', tr('size_l', 'كبير (L)'), item.l)}
+                                        ${buildPizzaSizeRow(item.id, 'xl', tr('size_xl', 'عائلي (XL)'), item.xl)}
+                                    </div>
+                                </div>
+                            </article>
+                        `;
+                    } else {
+                        cardsHTML += `
+                            <article class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                                ${imageBox}
+                                <div class="p-4 bg-white flex-1 flex flex-col justify-between gap-3">
+                                    <div class="flex items-center justify-between gap-2">
+                                        <h3 class="font-extrabold text-slate-900 text-sm sm:text-base leading-snug bg-white">
+                                            ${itemName} ${specialBadge}
+                                        </h3>
+                                        ${buildQtyCounter(item.id)}
+                                    </div>
+                                    <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+                                        <span class="text-xs text-slate-500 font-bold">${priceLabel}</span>
+                                        <span class="text-xs sm:text-sm font-black text-slate-900 bg-white border border-slate-200 px-3 py-1 rounded-lg whitespace-nowrap">
+                                            ${item.price} ${currencyText}
+                                        </span>
+                                    </div>
+                                </div>
+                            </article>
+                        `;
+                    }
+                });
+
+                cardsHTML += `</div>`;
+                sectionEl.innerHTML = headerHTML + cardsHTML;
+                container.appendChild(sectionEl);
+            });
+
+            container.classList.remove('opacity-0');
+            container.classList.add('opacity-100');
+        }
+
+        function updateActiveTab(catId) {
+            document.querySelectorAll('.cat-tab').forEach(btn => {
+                if (btn.dataset.cat === catId) {
+                    btn.className = 'cat-tab whitespace-nowrap px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-extrabold bg-marasy-gold text-marasy-dark transition shrink-0 cursor-pointer';
+                } else {
+                    btn.className = 'cat-tab whitespace-nowrap px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-bold bg-marasy-dark/80 text-marasy-gold hover:text-marasy-goldLight border border-marasy-gold/30 transition shrink-0 cursor-pointer';
+                }
+            });
+        }
+
+        function selectCategory(catId) {
+            updateActiveTab(catId);
+            renderAllSections(catId);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function initMenuPage() {
+            hydrateQuantitiesFromStorage();
+            renderAllSections('all');
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initMenuPage);
+        } else {
+            initMenuPage();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.MarasyI18n) {
+                window.MarasyI18n.onChange(() => {
+                    renderAllSections(currentSelectedCategory);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

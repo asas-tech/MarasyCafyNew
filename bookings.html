@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الحجوزات | مراسي كافيه - Marasy Cafe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="i18n.js"></script>
+
+    <!-- زر معلق باللون الذهبي للانتقال المباشر إلى المنيو الرقمي -->
+    <a href="menu.html"
+       data-i18n-aria="digital_menu_fab" aria-label="الانتقال إلى المنيو الرقمي"
+       class="fixed bottom-5 left-5 z-50 bg-marasy-gold hover:bg-marasy-goldLight text-marasy-dark font-extrabold py-3 px-5 rounded-full shadow-2xl flex items-center gap-2.5 transition transform hover:scale-105 border-2 border-white/30">
+        <i class="fa-solid fa-utensils text-xl"></i>
+        <span data-i18n="digital_menu_fab" class="text-sm">المنيو الرقمي</span>
+    </a>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        marasy: {
+                            dark: '#0B0F19',
+                            navy: '#060d24',
+                            red: '#991B1B',
+                            redLight: '#DC2626',
+                            gold: '#D4AF37',
+                            goldLight: '#F3E5AB'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .navbar-custom-bg {
+            background-image: linear-gradient(to bottom, rgba(6, 13, 36, 0.72), rgba(6, 13, 36, 0.85)), url('nav-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body data-i18n-title="bookings_title" class="bg-white text-slate-900 font-sans antialiased selection:bg-marasy-gold selection:text-marasy-dark">
+
+    <!-- الشريط العلوي الثابت بنفس شكل وتنسيق reviews.html -->
+    <header class="fixed top-0 left-0 right-0 z-50 navbar-custom-bg bg-marasy-navy border-b border-marasy-gold/30 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+            <!-- يمين الشريط العلوي: مراسي كافيه -->
+            <a href="index.html" class="flex items-center gap-2 group">
+                <i class="fa-solid fa-sailboat text-marasy-redLight text-lg sm:text-xl group-hover:text-marasy-gold transition"></i>
+                <span class="text-lg sm:text-xl font-black tracking-[0.18em] text-marasy-gold uppercase">MARASY</span>
+                <span class="text-xs sm:text-sm text-marasy-gold/90 font-bold">| <span data-i18n="brand_name">مراسي كافيه</span></span>
+            </a>
+
+            <!-- يسار الشريط العلوي: الرئيسية -->
+            <a href="index.html" class="px-3.5 py-1.5 rounded-lg text-xs font-extrabold bg-marasy-gold text-marasy-dark hover:bg-marasy-goldLight transition flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-arrow-right"></i>
+                <span data-i18n="home_btn">الرئيسية</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي على خلفية بيضاء -->
+    <main class="bg-white min-h-screen pt-24 pb-20 px-4 sm:px-8">
+        <section id="booking-section" class="max-w-4xl mx-auto pt-6">
+            <div class="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+                <div class="text-center mb-6">
+                    <span data-i18n="booking_badge" class="text-xs font-bold uppercase tracking-wider text-marasy-red bg-red-50 border border-red-200 px-3.5 py-1 rounded-full">
+                        حجز سريع ومباشر
+                    </span>
+                    <h1 data-i18n="booking_heading" class="text-2xl sm:text-3xl font-black text-slate-900 mt-3">
+                        احجز طاولتك في مراسي كافيه
+                    </h1>
+                    <p data-i18n="booking_subtext" class="text-slate-600 text-sm mt-1">
+                        املأ البيانات التالية وسيتم توجيهك مباشرة إلى واتساب إدارة الكافيه لتأكيد الحجز
+                    </p>
+                </div>
+
+                <form id="whatsappBookingForm" onsubmit="sendWhatsAppBooking(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                    <div>
+                        <label data-i18n="label_name" class="block text-xs font-bold text-slate-800 mb-1.5">الاسم بالكامل *</label>
+                        <input type="text" id="custName" required data-i18n-placeholder="placeholder_name" placeholder="مثال: أحمد محمود"
+                            class="w-full bg-white text-slate-900 rounded-xl p-3 text-sm border border-slate-300 focus:outline-none focus:border-marasy-navy">
+                    </div>
+
+                    <div>
+                        <label data-i18n="label_guests" class="block text-xs font-bold text-slate-800 mb-1.5">عدد الأفراد *</label>
+                        <select id="guestsCount" class="w-full bg-white text-slate-900 rounded-xl p-3 text-sm border border-slate-300 focus:outline-none focus:border-marasy-navy">
+                            <option value="فردين (2)" data-i18n="guests_2">فردين (2)</option>
+                            <option value="3 أفراد" data-i18n="guests_3">3 أفراد</option>
+                            <option value="4 أفراد" data-i18n="guests_4">4 أفراد</option>
+                            <option value="5 - 7 أفراد" data-i18n="guests_5_7">5 - 7 أفراد</option>
+                            <option value="مجموعة كبيرة (+8 أفراد)" data-i18n="guests_8_plus">مجموعة كبيرة (+8 أفراد)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label data-i18n="label_date" class="block text-xs font-bold text-slate-800 mb-1.5">تاريخ الحجز *</label>
+                        <input type="date" id="bookingDate" required
+                            class="w-full bg-white text-slate-900 rounded-xl p-3 text-sm border border-slate-300 focus:outline-none focus:border-marasy-navy">
+                    </div>
+
+                    <div>
+                        <label data-i18n="label_time" class="block text-xs font-bold text-slate-800 mb-1.5">الوقت المفضل *</label>
+                        <input type="time" id="bookingTime" required value="20:00"
+                            class="w-full bg-white text-slate-900 rounded-xl p-3 text-sm border border-slate-300 focus:outline-none focus:border-marasy-navy">
+                    </div>
+
+                    <!-- حقل طلباتي: يظهر فوق حقل مكان الجلسة وملاحظات إضافية -->
+                    <div class="sm:col-span-2">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <label data-i18n="label_my_orders" class="block text-xs font-bold text-slate-800">طلباتي</label>
+                            <a href="menu.html" class="text-xs font-bold text-marasy-navy hover:underline">
+                                <i class="fa-solid fa-utensils ml-1"></i><span data-i18n="add_from_menu">إضافة من المنيو</span>
+                            </a>
+                        </div>
+                        <div id="myOrdersContainer" class="min-h-[54px] bg-slate-50 border border-slate-300 rounded-2xl p-3 flex flex-wrap items-center gap-2"></div>
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <label data-i18n="label_notes" class="block text-xs font-bold text-slate-800 mb-1.5">مكان الجلسة / ملاحظات إضافية</label>
+                        <textarea id="bookingNotes" rows="2" data-i18n-placeholder="placeholder_notes" placeholder="مثال: جلسة خارجية (Outdoor)، أو رووف توب، أو حجز بلايستيشن..."
+                            class="w-full bg-white text-slate-900 rounded-xl p-3 text-sm border border-slate-300 focus:outline-none focus:border-marasy-navy"></textarea>
+                    </div>
+
+                    <div class="sm:col-span-2 mt-2">
+                        <button type="submit" class="w-full bg-[#25D366] hover:bg-[#20bd5a] text-slate-950 font-black py-3.5 px-6 rounded-xl shadow-lg shadow-emerald-950/20 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2 text-base cursor-pointer">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                            <span data-i18n="submit_whatsapp_btn">إرسال طلب الحجز عبر الواتساب</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const ORDERS_STORAGE_KEY = 'marasy_customer_orders_v1';
+
+        const numberWords = {
+            1: 'واحد',
+            2: 'اتنين',
+            3: 'تلاته',
+            4: 'أربعة',
+            5: 'خمسة',
+            6: 'ستة',
+            7: 'سبعة',
+            8: 'تمانية',
+            9: 'تسعة',
+            10: 'عشرة'
+        };
+
+        function getCurrentLang() {
+            return window.MarasyI18n ? window.MarasyI18n.getLang() : 'ar';
+        }
+
+        function tr(key, fallback) {
+            return window.MarasyI18n ? window.MarasyI18n.t(key, fallback) : fallback;
+        }
+
+        function formatCountLabel(count) {
+            if (getCurrentLang() === 'en') {
+                return `x${count}`;
+            }
+            return numberWords[count] || String(count);
+        }
+
+        function getLocalizedItemName(order) {
+            const lang = getCurrentLang();
+            if (lang === 'en' && order.name_en) {
+                return order.name_en;
+            }
+            if (lang === 'ar' && order.name_ar) {
+                return order.name_ar;
+            }
+            return order.name;
+        }
+
+        function loadOrders() {
+            try {
+                localStorage.removeItem(ORDERS_STORAGE_KEY);
+                const raw = sessionStorage.getItem(ORDERS_STORAGE_KEY);
+                const parsed = raw ? JSON.parse(raw) : [];
+                return Array.isArray(parsed) ? parsed : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function saveOrders(orders) {
+            try {
+                sessionStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(orders));
+            } catch (e) {}
+        }
+
+        function removeOrderItem(key) {
+            const currentOrders = loadOrders().filter(item => item.key !== key);
+            saveOrders(currentOrders);
+            renderMyOrders();
+        }
+
+        function renderMyOrders() {
+            const container = document.getElementById('myOrdersContainer');
+            if (!container) return;
+
+            const orders = loadOrders().filter(item => item && item.qty > 0);
+            container.innerHTML = '';
+
+            if (orders.length === 0) {
+                container.innerHTML = `<span class="text-xs text-slate-500 font-semibold">${tr('no_orders_selected', 'لا توجد طلبات مختارة من المنيو حالياً.')}</span>`;
+                return;
+            }
+
+            orders.forEach(order => {
+                const displayName = getLocalizedItemName(order);
+                const countText = formatCountLabel(order.qty);
+
+                const badge = document.createElement('div');
+                badge.className = 'inline-flex items-center gap-2.5 bg-marasy-navy text-white rounded-full px-3.5 py-1.5 text-xs sm:text-sm font-bold shadow-sm';
+
+                const labelSpan = document.createElement('span');
+                labelSpan.textContent = `${countText} ${displayName}`;
+
+                const closeBtn = document.createElement('button');
+                closeBtn.type = 'button';
+                closeBtn.setAttribute('aria-label', `${tr('remove_item_aria', 'حذف')} ${displayName}`);
+                closeBtn.className = 'w-5 h-5 rounded-full bg-red-600 hover:bg-red-700 text-white flex items-center justify-center text-[11px] leading-none transition cursor-pointer shrink-0';
+                closeBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                closeBtn.addEventListener('click', () => removeOrderItem(order.key));
+
+                badge.appendChild(labelSpan);
+                badge.appendChild(closeBtn);
+                container.appendChild(badge);
+            });
+        }
+
+        function sendWhatsAppBooking(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('custName').value.trim();
+            const guestsSelect = document.getElementById('guestsCount');
+            const guests = guestsSelect.options[guestsSelect.selectedIndex]
+                ? guestsSelect.options[guestsSelect.selectedIndex].textContent.trim()
+                : guestsSelect.value;
+            const date = document.getElementById('bookingDate').value;
+            const time = document.getElementById('bookingTime').value;
+            const notes = document.getElementById('bookingNotes').value.trim();
+            const orders = loadOrders().filter(item => item && item.qty > 0);
+            const isEn = getCurrentLang() === 'en';
+
+            const phoneNumber = '201000984344';
+
+            let message = `${tr('wa_header', '*طلب حجز طاولة جديد - مراسي كافيه* ☕')}\n`;
+            message += `--------------------------\n`;
+            message += `👤 *${tr('wa_name', 'الاسم')}:* ${name}\n`;
+            message += `👥 *${tr('wa_guests', 'عدد الأفراد')}:* ${guests}\n`;
+            message += `📅 *${tr('wa_date', 'التاريخ')}:* ${date}\n`;
+            message += `⏰ *${tr('wa_time', 'الوقت')}:* ${time}\n`;
+            if (orders.length > 0) {
+                const separator = isEn ? ', ' : '، ';
+                const ordersText = orders
+                    .map(o => `${formatCountLabel(o.qty)} ${getLocalizedItemName(o)}`)
+                    .join(separator);
+                message += `🍽️ *${tr('wa_orders', 'طلباتي')}:* ${ordersText}\n`;
+            }
+            if (notes) {
+                message += `📝 *${tr('wa_notes', 'ملاحظات')}:* ${notes}\n`;
+            }
+            message += `--------------------------\n`;
+            message += `${tr('wa_footer', 'يرجى تأكيد توفر الطاولة، شكراً لكم.')}`;
+
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.getElementById('bookingDate');
+            if (dateInput) {
+                dateInput.value = today;
+                dateInput.min = today;
+            }
+            renderMyOrders();
+
+            if (window.MarasyI18n) {
+                window.MarasyI18n.onChange(() => {
+                    renderMyOrders();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

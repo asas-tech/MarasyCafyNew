@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أجواء الكافيه | مراسي كافيه - Marasy Cafe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="i18n.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        marasy: {
+                            dark: '#0B0F19',
+                            navy: '#060d24',
+                            red: '#991B1B',
+                            redLight: '#DC2626',
+                            gold: '#D4AF37',
+                            goldLight: '#F3E5AB'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .navbar-custom-bg {
+            background-image: linear-gradient(to bottom, rgba(6, 13, 36, 0.72), rgba(6, 13, 36, 0.85)), url('nav-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .photo-3d-float {
+            box-shadow:
+                0 28px 55px -10px rgba(6, 13, 36, 0.42),
+                0 16px 28px -8px rgba(15, 23, 42, 0.28),
+                0 6px 12px -2px rgba(6, 13, 36, 0.22);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .photo-3d-float:hover {
+            transform: translateY(-9px);
+            box-shadow:
+                0 38px 70px -12px rgba(6, 13, 36, 0.50),
+                0 22px 36px -10px rgba(15, 23, 42, 0.34),
+                0 10px 16px -4px rgba(6, 13, 36, 0.26);
+        }
+
+        .video-3d-shadow {
+            box-shadow:
+                0 28px 55px -10px rgba(6, 13, 36, 0.42),
+                0 16px 28px -8px rgba(15, 23, 42, 0.28),
+                0 6px 12px -2px rgba(6, 13, 36, 0.22);
+            transition: box-shadow 0.35s ease;
+        }
+
+        .video-3d-shadow:hover {
+            box-shadow:
+                0 38px 70px -12px rgba(6, 13, 36, 0.50),
+                0 22px 36px -10px rgba(15, 23, 42, 0.34),
+                0 10px 16px -4px rgba(6, 13, 36, 0.26);
+        }
+    </style>
+</head>
+<body data-i18n-title="vibes_title" class="bg-white text-slate-900 font-sans antialiased selection:bg-marasy-gold selection:text-marasy-dark">
+
+    <!-- الشريط العلوي الثابت بنفس عرض وتنسيق menu.html -->
+    <header class="fixed top-0 left-0 right-0 z-50 navbar-custom-bg bg-marasy-navy border-b border-marasy-gold/30 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+            <!-- يمين الشريط العلوي: مراسي كافيه -->
+            <a href="index.html" class="flex items-center gap-2 group">
+                <i class="fa-solid fa-sailboat text-marasy-redLight text-lg sm:text-xl group-hover:text-marasy-gold transition"></i>
+                <span class="text-lg sm:text-xl font-black tracking-[0.18em] text-marasy-gold uppercase">MARASY</span>
+                <span class="text-xs sm:text-sm text-marasy-gold/90 font-bold">| <span data-i18n="brand_name">مراسي كافيه</span></span>
+            </a>
+
+            <!-- يسار الشريط العلوي: الرئيسية -->
+            <a href="index.html" class="px-3.5 py-1.5 rounded-lg text-xs font-extrabold bg-marasy-gold text-marasy-dark hover:bg-marasy-goldLight transition flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-arrow-right"></i>
+                <span data-i18n="home_btn">الرئيسية</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- المحتوى الرئيسي على خلفية بيضاء بأسلوب سردي حر غير منتظم -->
+    <main class="bg-white min-h-screen pt-24 pb-24 px-4 sm:px-8 overflow-x-hidden">
+        <div class="max-w-6xl mx-auto">
+
+            <!-- مقدمة بأسلوب قصصي مستوحى من روح السرد البصري -->
+            <section class="max-w-3xl mx-auto text-center pt-6 pb-16">
+                <span class="inline-block text-xs font-extrabold tracking-wider text-marasy-red bg-red-50 border border-red-200 px-4 py-1 rounded-full mb-4">
+                    <span class="lang-ar">مراسي كافيه • قصة المكان والأجواء</span>
+                    <span class="lang-en hidden">Marasy Cafe • Atmosphere & Story</span>
+                </span>
+                <h1 class="text-3xl sm:text-5xl font-black text-slate-900 leading-tight mb-4">
+                    <span class="lang-ar">حيث تلتقي دفء الجلسة بروح اللحظة</span>
+                    <span class="lang-en hidden">Where Cozy Seating Meets the Spirit of the Moment</span>
+                </h1>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    <span class="lang-ar">في مراسي كافيه لا نقدم مجرد مشروب أو طاولة، بل ننسج تفاصيل يومك بين ضحكات الصحاب، وهدوء الزوايا الخاصة، وطاقة الاحتفالات التي تبقى في الذاكرة.</span>
+                    <span class="lang-en hidden">At Marasy Cafe, we don't just serve a drink or a table—we weave your day around friends' laughter, quiet corners, and celebrations that stay in memory.</span>
+                </p>
+            </section>
+
+            <div class="space-y-24 sm:space-y-32">
+
+                <!-- 1. صورة يمين + وصف شمال (إزاحة حرة غير متماثلة) -->
+                <section class="relative flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
+                    <div class="w-full lg:w-7/12 lg:mr-auto">
+                        <img src="vibe-friends-selfie.jpg" alt="لحظات أصدقاء وضحكات في مراسي كافيه" class="w-full h-auto rounded-3xl border border-slate-200/80 photo-3d-float">
+                    </div>
+                    <div data-i18n-align class="w-full lg:w-5/12 lg:mt-20 bg-white/95 p-2 sm:p-4 text-right">
+                        <span class="text-xs font-black text-marasy-red tracking-wider block mb-2">
+                            <span class="lang-ar">01 • طاقة الصحاب</span>
+                            <span class="lang-en hidden">01 • Friends' Energy</span>
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mb-3">
+                            <span class="lang-ar">ضحكات تبدأ بفنجان وتكبر بالذكريات</span>
+                            <span class="lang-en hidden">Laughter That Starts with a Cup and Grows into Memories</span>
+                        </h2>
+                        <p class="text-slate-700 text-sm sm:text-base leading-loose">
+                            <span class="lang-ar">حول الطاولات الخشبية الدافئة تتحول اللقاءات العادية إلى لحظات عفوية مليئة بالحيوية؛ قهوة ساخنة، مشاركة سريعة، ولقطة سيلفي تحفظ حكاية اليوم كما هي.</span>
+                            <span class="lang-en hidden">Around warm wooden tables, everyday hangouts turn into lively, spontaneous moments—hot coffee, quick sharing, and a selfie that captures the day just as it is.</span>
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 2. صورة شمال + وصف يمين (إزاحة معاكسة) -->
+                <section class="relative flex flex-col lg:flex-row-reverse items-center lg:items-end gap-8 lg:gap-12">
+                    <div class="w-full lg:w-6/12 lg:ml-auto">
+                        <img src="vibe-lounge-hospitality.jpg" alt="ضيافة فاخرة ومشروبات منعشة في مراسي كافيه" class="w-full h-auto rounded-3xl border border-slate-200/80 photo-3d-float">
+                    </div>
+                    <div data-i18n-align class="w-full lg:w-5/12 lg:mb-16 bg-white p-2 sm:p-4 text-right">
+                        <span class="text-xs font-black text-marasy-red tracking-wider block mb-2">
+                            <span class="lang-ar">02 • ضيافة وراحة</span>
+                            <span class="lang-en hidden">02 • Hospitality & Comfort</span>
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mb-3">
+                            <span class="lang-ar">تفاصيل ضيافة تمنحك إحساساً بالتميز</span>
+                            <span class="lang-en hidden">Hospitality Details That Make You Feel Special</span>
+                        </h2>
+                        <p class="text-slate-700 text-sm sm:text-base leading-loose">
+                            <span class="lang-ar">جلسات مبطنة تريح الجسد، ومشروبات باردة وساخنة تُقدَّم بعناية مع لمسات فواكه طازجة لتشعر منذ اللحظة الأولى أن المكان صُمم لراحتك.</span>
+                            <span class="lang-en hidden">Cushioned seating that eases the body and hot or cold drinks served with care and fresh fruit touches so you feel at home from the first moment.</span>
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 3. صورة يمين + وصف شمال -->
+                <section class="relative flex flex-col lg:flex-row items-center lg:items-center gap-8 lg:gap-12">
+                    <div class="w-full lg:w-6/12 lg:mr-auto">
+                        <img src="vibe-quiet-corner.jpg" alt="ركن هادئ وجلسة راقية في مراسي كافيه" class="w-full h-auto rounded-3xl border border-slate-200/80 photo-3d-float">
+                    </div>
+                    <div data-i18n-align class="w-full lg:w-5/12 bg-white p-2 sm:p-4 text-right">
+                        <span class="text-xs font-black text-marasy-red tracking-wider block mb-2">
+                            <span class="lang-ar">03 • صفاء وهدوء</span>
+                            <span class="lang-en hidden">03 • Serenity & Calm</span>
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mb-3">
+                            <span class="lang-ar">ركن هادئ للحديث العميق والانسجام</span>
+                            <span class="lang-en hidden">A Quiet Corner for Deep Conversation and Harmony</span>
+                        </h2>
+                        <p class="text-slate-700 text-sm sm:text-base leading-loose">
+                            <span class="lang-ar">إضاءة ناعمة ومساحة متزنة تمنحك خصوصية مريحة للقاء هادئ أو حديث طويل يأخذ وقته دون استعجال وسط أجواء راقية.</span>
+                            <span class="lang-en hidden">Soft lighting and balanced space give you comfortable privacy for a calm meetup or an unhurried conversation in a refined setting.</span>
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 4. صورة شمال + وصف يمين -->
+                <section class="relative flex flex-col lg:flex-row-reverse items-center lg:items-start gap-8 lg:gap-12">
+                    <div class="w-full lg:w-7/12 lg:ml-auto">
+                        <img src="vibe-lively-gathering.jpg" alt="أجواء حيوية وتجمع ممتع في مراسي كافيه" class="w-full h-auto rounded-3xl border border-slate-200/80 photo-3d-float">
+                    </div>
+                    <div data-i18n-align class="w-full lg:w-4/12 lg:mt-14 bg-white p-2 sm:p-4 text-right">
+                        <span class="text-xs font-black text-marasy-red tracking-wider block mb-2">
+                            <span class="lang-ar">04 • نبض المكان</span>
+                            <span class="lang-en hidden">04 • Pulse of the Place</span>
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mb-3">
+                            <span class="lang-ar">حركة وتفاعل يملآن المكان بالحياة</span>
+                            <span class="lang-en hidden">Movement and Connection That Fill the Space with Life</span>
+                        </h2>
+                        <p class="text-slate-700 text-sm sm:text-base leading-loose">
+                            <span class="lang-ar">مساحة تنبض بالود والابتسامات المتبادلة، حيث يلتقي الناس في أجواء غنية بالتفاصيل والدفء اليومي.</span>
+                            <span class="lang-en hidden">A space alive with warmth and shared smiles, where people gather in a setting rich in detail and everyday comfort.</span>
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 5. صورة يمين + وصف شمال -->
+                <section class="relative flex flex-col lg:flex-row items-center lg:items-end gap-8 lg:gap-12">
+                    <div class="w-full lg:w-6/12 lg:mr-auto">
+                        <img src="vibe-coffee-meetup.jpg" alt="لقاء مرح ومشروبات قهوة في مراسي كافيه" class="w-full h-auto rounded-3xl border border-slate-200/80 photo-3d-float">
+                    </div>
+                    <div data-i18n-align class="w-full lg:w-5/12 lg:mb-12 bg-white p-2 sm:p-4 text-right">
+                        <span class="text-xs font-black text-marasy-red tracking-wider block mb-2">
+                            <span class="lang-ar">05 • بهجة اليوم</span>
+                            <span class="lang-en hidden">05 • Joy of the Day</span>
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mb-3">
+                            <span class="lang-ar">إطلالة مشرقة على يومك مع قهوتك</span>
+                            <span class="lang-en hidden">A Bright Lift to Your Day with Your Coffee</span>
+                        </h2>
+                        <p class="text-slate-700 text-sm sm:text-base leading-loose">
+                            <span class="lang-ar">سواء كانت وقفة سريعة أو جلسة ممتعة مع الأصدقاء، تضيف أجواء مراسي خفة وإشراقة تجعل كل زيارة تجربة مبهجة.</span>
+                            <span class="lang-en hidden">Whether a quick stop or a fun session with friends, Marasy's atmosphere brings lightness and brightness to every visit.</span>
+                        </p>
+                    </div>
+                </section>
+
+                <!-- عنوان قسم الفيديوهات -->
+                <section class="pt-10 border-t border-slate-200 text-center max-w-2xl mx-auto">
+                    <span class="inline-block text-xs font-black text-marasy-red bg-red-50 border border-red-200 px-4 py-1 rounded-full mb-3">
+                        <span class="lang-ar">مناسبات واحتفالات خاصة</span>
+                        <span class="lang-en hidden">Special Events & Celebrations</span>
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-black text-slate-900 mb-3">
+                        <span class="lang-ar">فيديوهات الأجواء والمناسبات</span>
+                        <span class="lang-en hidden">Atmosphere & Event Videos</span>
+                    </h2>
+                </section>
+
+                <!-- فيديو 1: birthdaylink — فيديو يمين + وصف شمال (أبعاد كاملة بدون قص) -->
+                <section class="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
+                    <div class="w-full max-w-sm lg:mr-auto flex flex-col items-center">
+                        <video controls controlsList="nodownload" preload="metadata" class="w-full h-auto max-h-[82vh] object-contain rounded-3xl bg-slate-950 video-3d-shadow">
+                            <source src="https://www.pexels.com/download/video/5896320/" type="video/mp4">
+                            <span class="lang-ar">متصفحك لا يدعم تشغيل الفيديو المباشر.</span>
+                            <span class="lang-en hidden">Your browser does not support direct video playback.</span>
+                        </video>
+                    </div>
+                    <div data-i18n-align class="w-full lg:w-6/12 lg:mt-20 bg-white p-2 sm:p-4 text-right">
+                        <span class="text-xs font-black text-marasy-red tracking-wider block mb-2">
+                            <span class="lang-ar">أعياد الميلاد • Birthday</span>
+                            <span class="lang-en hidden">Birthdays • أعياد الميلاد</span>
+                        </span>
+                        <h3 class="text-2xl sm:text-3xl font-black text-slate-900 mb-3">
+                            <span class="lang-ar">احتفالات أعياد ميلاد بلمسة دافئة</span>
+                            <span class="lang-en hidden">Warm Birthday Celebrations</span>
+                        </h3>
+                        <p class="text-slate-700 text-sm sm:text-base leading-loose">
+                            <span class="lang-ar">أجواء مبهجة وضيافة مميزة تجعل كل عيد ميلاد لحظة استثنائية تجمع الأهل والأصدقاء في جلسة مليئة بالبهجة والذكريات الجميلة.</span>
+                            <span class="lang-en hidden">Joyful vibes and attentive hospitality make every birthday an unforgettable gathering of family and friends full of warmth and lasting memories.</span>
+                        </p>
+                    </div>
+                </section>
+
+                <!-- فيديو 2: wedding link — فيديو شمال + وصف يمين (أبعاد كاملة بدون قص) -->
+                <section class="flex flex-col lg:flex-row-reverse items-center lg:items-start gap-8 lg:gap-12">
+                    <div class="w-full max-w-sm lg:ml-auto flex flex-col items-center">
+                        <video controls controlsList="nodownload" preload="metadata" class="w-full h-auto max-h-[82vh] object-contain rounded-3xl bg-slate-950 video-3d-shadow">
+                            <source src="https://www.pexels.com/download/video/36569510/" type="video/mp4">
+                            <span class="lang-ar">متصفحك لا يدعم تشغيل الفيديو المباشر.</span>
+                            <span class="lang-en hidden">Your browser does not support direct video playback.</span>
+                        </video>
+                    </div>
+                    <div data-i18n-align class="w-full lg:w-6/12 lg:mt-20 bg-white p-2 sm:p-4 text-right">
+                        <span class="text-xs font-black text-marasy-red tracking-wider block mb-2">
+                            <span class="lang-ar">حفلات الزفاف • Wedding</span>
+                            <span class="lang-en hidden">Weddings • حفلات الزفاف</span>
+                        </span>
+                        <h3 class="text-2xl sm:text-3xl font-black text-slate-900 mb-3">
+                            <span class="lang-ar">لحظات زفاف راقية وأجواء شاعرية</span>
+                            <span class="lang-en hidden">Refined Wedding Moments & Romantic Vibes</span>
+                        </h3>
+                        <p class="text-slate-700 text-sm sm:text-base leading-loose">
+                            <span class="lang-ar">تفاصيل أنيقة وإضاءة ساحرة تمنح الاحتفالات الخاصة وحفلات الزفاف طابعاً راقياً وحميمياً يليق بأجمل بدايات العمر.</span>
+                            <span class="lang-en hidden">Elegant details and inviting lighting give private celebrations and weddings an intimate, refined touch worthy of new beginnings.</span>
+                        </p>
+                    </div>
+                </section>
+
+                <!-- فيديو 3: grad party — فيديو يمين + وصف شمال (أبعاد كاملة بدون قص) -->
+                <section class="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
+                    <div class="w-full max-w-sm lg:mr-auto flex flex-col items-center">
+                        <video controls controlsList="nodownload" preload="metadata" class="w-full h-auto max-h-[82vh] object-contain rounded-3xl bg-slate-950 video-3d-shadow">
+                            <source src="https://www.pexels.com/download/video/7945884/" type="video/mp4">
+                            <span class="lang-ar">متصفحك لا يدعم تشغيل الفيديو المباشر.</span>
+                            <span class="lang-en hidden">Your browser does not support direct video playback.</span>
+                        </video>
+                    </div>
+                    <div data-i18n-align class="w-full lg:w-6/12 lg:mt-20 bg-white p-2 sm:p-4 text-right">
+                        <span class="text-xs font-black text-marasy-red tracking-wider block mb-2">
+                            <span class="lang-ar">حفلات التخرج • Graduation Party</span>
+                            <span class="lang-en hidden">Graduation Parties • حفلات التخرج</span>
+                        </span>
+                        <h3 class="text-2xl sm:text-3xl font-black text-slate-900 mb-3">
+                            <span class="lang-ar">فرحة التخرج واحتفال الإنجاز</span>
+                            <span class="lang-en hidden">Graduation Joy & Celebrating Achievement</span>
+                        </h3>
+                        <p class="text-slate-700 text-sm sm:text-base leading-loose">
+                            <span class="lang-ar">احتفل بنجاحك وسط أصحابك وعائلتك في أجواء حماسية وممتعة تليق بتتويج سنوات من التعب والاجتهاد.</span>
+                            <span class="lang-en hidden">Celebrate your milestone with friends and family in an energetic, enjoyable setting that honors years of hard work.</span>
+                        </p>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function syncBilingualSpans(lang) {
+            const isEn = lang === 'en';
+            document.querySelectorAll('.lang-ar').forEach(el => el.classList.toggle('hidden', isEn));
+            document.querySelectorAll('.lang-en').forEach(el => el.classList.toggle('hidden', !isEn));
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.MarasyI18n) {
+                syncBilingualSpans(window.MarasyI18n.getLang());
+                window.MarasyI18n.onChange(syncBilingualSpans);
+            }
+        });
+    </script>
+
+</body>
+</html>

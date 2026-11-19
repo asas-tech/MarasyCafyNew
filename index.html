@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مراسي كافيه | Marasy Cafe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="i18n.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        marasy: {
+                            dark: '#0B0F19',
+                            navy: '#060d24',
+                            card: '#131A2A',
+                            border: '#1E293B',
+                            red: '#991B1B',
+                            redLight: '#DC2626',
+                            gold: '#D4AF37',
+                            goldLight: '#F3E5AB'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* خلفية الشريط العلوي بصورة nav-bg.jpg مع طبقة حماية خفيفة لوضوح النص الذهبي */
+        .navbar-custom-bg {
+            background-image: linear-gradient(to bottom, rgba(6, 13, 36, 0.55), rgba(6, 13, 36, 0.65)), url('nav-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* إعدادات السلايدر بنظام الزق البطيء والناعم (1.8 ثانية) */
+        .slide-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transform: translateX(0);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .slide-img.current {
+            opacity: 1;
+            transform: translateX(0);
+            z-index: 2;
+        }
+
+        /* حركة الزق للصور القادمة من اليمين */
+        #rightSlider .slide-img.prep-next {
+            opacity: 1;
+            transform: translateX(100%);
+            z-index: 3;
+            transition: none;
+        }
+        #rightSlider .slide-img.slide-in {
+            opacity: 1;
+            transform: translateX(0);
+            z-index: 3;
+            transition: transform 1.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        #rightSlider .slide-img.push-out {
+            opacity: 1;
+            transform: translateX(-100%);
+            z-index: 2;
+            transition: transform 1.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* حركة الزق للصور القادمة من الشمال */
+        #leftSlider .slide-img.prep-next {
+            opacity: 1;
+            transform: translateX(-100%);
+            z-index: 3;
+            transition: none;
+        }
+        #leftSlider .slide-img.slide-in {
+            opacity: 1;
+            transform: translateX(0);
+            z-index: 3;
+            transition: transform 1.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        #leftSlider .slide-img.push-out {
+            opacity: 1;
+            transform: translateX(100%);
+            z-index: 2;
+            transition: transform 1.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+    </style>
+</head>
+<body data-i18n-title="index_title" class="bg-marasy-dark text-gray-100 font-sans antialiased selection:bg-marasy-gold selection:text-marasy-dark">
+
+    <!-- 1. الشريط العلوي الثابت بخلفية الصورة nav-bg.jpg -->
+    <nav class="fixed top-0 left-0 right-0 z-50 navbar-custom-bg border-b border-marasy-gold/20 shadow-xl">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-8 h-20 grid grid-cols-3 items-center">
+            
+            <!-- العمود الأيمن: 3 روابط بمسافات متساوية -->
+            <div class="hidden lg:flex items-center justify-around w-full">
+                <a href="menu.html" target="_blank" rel="noopener noreferrer" data-i18n="nav_menu" class="text-marasy-gold hover:text-marasy-goldLight font-bold text-base tracking-wide transition drop-shadow">المنيو الرقمي</a>
+                <a href="vibes.html" target="_blank" rel="noopener noreferrer" data-i18n="nav_vibes" class="text-marasy-gold hover:text-marasy-goldLight font-bold text-base tracking-wide transition drop-shadow">أجواء الكافيه</a>
+                <a href="reviews.html" target="_blank" rel="noopener noreferrer" data-i18n="nav_reviews" class="text-marasy-gold hover:text-marasy-goldLight font-bold text-base tracking-wide transition drop-shadow">آراء العملاء</a>
+            </div>
+
+            <!-- زر قائمة الموبايل -->
+            <div class="flex lg:hidden justify-start">
+                <button id="mobileMenuBtn" class="text-marasy-gold text-2xl focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+
+            <!-- العمود الأوسط: الشعار في منتصف الشاشة بالضبط -->
+            <div class="flex justify-center items-center">
+                <a href="#" class="flex flex-col items-center justify-center group drop-shadow">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-sailboat text-marasy-redLight text-xl group-hover:text-marasy-gold transition"></i>
+                        <span class="text-2xl sm:text-[26px] font-black tracking-[0.22em] text-marasy-gold uppercase">MARASY</span>
+                    </div>
+                    <span data-i18n="brand_name" class="text-[11px] text-marasy-gold/90 font-bold tracking-widest -mt-0.5">مراسي كافيه</span>
+                </a>
+            </div>
+
+            <!-- العمود الأيسر: 3 روابط بمسافات متساوية -->
+            <div class="hidden lg:flex items-center justify-around w-full">
+                <a href="bookings.html" data-i18n="nav_bookings" class="text-marasy-gold hover:text-marasy-goldLight font-bold text-base tracking-wide transition drop-shadow">الحجوزات</a>
+                <a href="#contact-section" data-i18n="nav_contact" class="text-marasy-gold hover:text-marasy-goldLight font-bold text-base tracking-wide transition drop-shadow">اتصل بنا</a>
+                <button id="langSwitchBtn" onclick="toggleLanguage()" data-i18n="lang_switch_btn" class="text-marasy-gold hover:text-marasy-goldLight font-bold text-base tracking-wide transition cursor-pointer drop-shadow">
+                    انجليزي
+                </button>
+            </div>
+
+            <!-- زر اللغة في الموبايل -->
+            <div class="flex lg:hidden justify-end">
+                <button onclick="toggleLanguage()" data-i18n="lang_switch_btn" class="text-marasy-gold text-sm font-bold border border-marasy-gold/40 bg-marasy-dark/50 px-3 py-1 rounded-lg">
+                    انجليزي
+                </button>
+            </div>
+
+        </div>
+
+        <!-- قائمة الموبايل المنسدلة -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-marasy-navy/95 backdrop-blur-md border-b border-blue-950 px-6 py-4 space-y-3 text-center">
+            <a href="menu.html" target="_blank" rel="noopener noreferrer" data-i18n="nav_menu" class="block py-2 text-base font-bold text-marasy-gold hover:text-marasy-goldLight">المنيو الرقمي</a>
+            <a href="vibes.html" target="_blank" rel="noopener noreferrer" data-i18n="nav_vibes" class="block py-2 text-base font-bold text-marasy-gold hover:text-marasy-goldLight">أجواء الكافيه</a>
+            <a href="reviews.html" target="_blank" rel="noopener noreferrer" data-i18n="nav_reviews" class="block py-2 text-base font-bold text-marasy-gold hover:text-marasy-goldLight">آراء العملاء</a>
+            <a href="bookings.html" data-i18n="nav_bookings" class="block py-2 text-base font-bold text-marasy-gold hover:text-marasy-goldLight">الحجوزات</a>
+            <a href="#contact-section" data-i18n="nav_contact" class="block py-2 text-base font-bold text-marasy-gold hover:text-marasy-goldLight">اتصل بنا</a>
+        </div>
+    </nav>
+
+    <!-- 2. الواجهة الرئيسية المقسومة لنصفين -->
+    <header class="relative min-h-screen pt-20 grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
+        
+        <!-- النصف الأيمن: سلايدر 4 صور بنظام الزق من اليمين كل 5 ثوانٍ -->
+        <div class="relative min-h-[50vh] lg:min-h-[calc(100vh-5rem)] w-full overflow-hidden bg-slate-950 order-1">
+            <div id="rightSlider" class="relative w-full h-full overflow-hidden">
+                <img src="right-1.jpg" alt="مراسي كافيه 1" class="slide-img current">
+                <img src="right-2.jpg" alt="مراسي كافيه 2" class="slide-img">
+                <img src="right-3.jpg" alt="مراسي كافيه 3" class="slide-img">
+                <img src="right-4.jpg" alt="مراسي كافيه 4" class="slide-img">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-marasy-dark/50 via-transparent to-marasy-dark/20 z-10 pointer-events-none"></div>
+        </div>
+
+        <!-- النصف الأيسر: سلايدر 3 صور بنظام الزق من الشمال + المحتوى متمركز في المنتصف -->
+        <div class="relative min-h-[65vh] lg:min-h-[calc(100vh-5rem)] w-full flex items-center justify-center overflow-hidden bg-[#0a1128] order-2">
+            <div id="leftSlider" class="absolute inset-0 w-full h-full overflow-hidden">
+                <img src="left-1.jpg" alt="خلفية مراسي 1" class="slide-img current">
+                <img src="left-2.jpg" alt="خلفية مراسي 2" class="slide-img">
+                <img src="left-3.jpg" alt="خلفية مراسي 3" class="slide-img">
+            </div>
+            
+            <div class="absolute inset-0 bg-[#070d1f]/80 backdrop-blur-[2px] z-10 pointer-events-none"></div>
+
+            <!-- المحتوى النصي والأزرار في منتصف النصف الأيسر بالضبط -->
+            <div class="relative z-20 w-full max-w-md mx-auto px-6 py-12 flex flex-col items-center justify-center text-center">
+                
+              <h1 data-i18n="hero_main_title" class="text-4xl sm:text-5xl font-black text-white leading-tight">
+                    مراسي كافيه
+                </h1>
+                <span data-i18n="hero_subtitle_en" class="block text-marasy-gold text-2xl sm:text-3xl font-bold tracking-wider mt-3 mb-4">
+                    Marasy Cafe
+                </span>
+
+                <div class="w-16 h-0.5 bg-marasy-gold/60 my-3"></div>
+
+                <p data-i18n="hero_desc" class="text-gray-200 text-sm sm:text-base leading-relaxed mb-6">
+                    التجمع الخامس - القاهرة الجديدة • جلسات خارجية ورووف توب، بلايستيشن، أشهى المأكولات والمشروبات الطازجة يومياً.
+                </p>
+
+                <!-- المواعيد والمميزات -->
+                <div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs sm:text-sm text-gray-300 mb-8">
+                    <span><i class="fa-regular fa-clock text-marasy-gold ml-1"></i> <span data-i18n="hero_hours">يومياً: 8:00 ص - 3:00 ص</span></span>
+                    <span class="text-marasy-gold">•</span>
+                    <span><i class="fa-solid fa-wifi text-marasy-gold ml-1"></i> <span data-i18n="hero_wifi">Wi-Fi مجاني</span></span>
+                    <span class="text-marasy-gold">•</span>
+                    <span><i class="fa-solid fa-gamepad text-marasy-gold ml-1"></i> <span data-i18n="hero_ps">PlayStation</span></span>
+                </div>
+
+                <!-- زرارين تحت بعض بطولهم الكامل وسمك رفيع وأنيق -->
+            <div class="w-full max-w-xs mx-auto flex flex-col gap-3">
+                    <a href="https://maps.google.com/?q=Marasy+cafe+New+Cairo" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-6 bg-white hover:bg-gray-100 text-marasy-dark font-black text-sm tracking-wider transition duration-300 shadow-lg flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span data-i18n="hero_location_btn">موقع الكافيه</span>
+                    </a>
+
+                    <a href="bookings.html" data-i18n="hero_book_btn" class="w-full py-2.5 px-6 bg-marasy-gold hover:bg-yellow-500 text-marasy-dark font-black text-sm tracking-wider transition duration-300 shadow-lg flex items-center justify-center">
+                        الحجوزات
+                    </a>
+                    
+                    <a href="tour.html" target="_blank" rel="noopener noreferrer" data-i18n="hero_tour_btn" class="w-full py-2.5 px-6 bg-white hover:bg-gray-100 text-marasy-dark font-black text-sm tracking-wider transition duration-300 shadow-lg flex items-center justify-center">
+                        جولة في الكافي
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- أيقونة الماوس في منتصف الشاشة بالأسفل للنزول -->
+        <a href="#menu-section" data-i18n-aria="scroll_down_aria" aria-label="انزل للأسفل" class="hidden lg:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-30 w-10 h-14 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 items-center justify-center transition">
+            <div class="w-5 h-8 rounded-full border-2 border-white flex justify-center pt-1.5">
+                <div class="w-1 h-2 bg-white rounded-full"></div>
+            </div>
+        </a>
+
+    </header>
+ 
+    <!-- الفوتر (Footer) مع زر حجز واتساب ثابت في الأسفل وخلفيته ذهبية -->
+    <footer id="contact-section" class="bg-black border-t border-marasy-border py-10 px-4 sm:px-8">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            
+            <!-- زر حجز واتساب ثابت داخل الفوتر بخلفية ذهبية -->
+            <div class="flex items-center justify-center shrink-0">
+                <a href="https://wa.me/201000984344?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9%20%D9%85%D8%B1%D8%A7%D8%B3%D9%8A%20%D9%83%D8%A7%D9%81%D9%8A%D9%87%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D9%81%D9%8A%20%D8%AD%D8%AC%D8%B2%20%D8%B7%D8%A7%D9%88%D9%84%D8%A9%20%D8%A3%D9%88%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%A7%D9%84%D9%85%D9%86%D9%8A%D9%88." 
+                   target="_blank" rel="noopener noreferrer"
+                   data-i18n-aria="footer_whatsapp_aria" aria-label="تواصل عبر واتساب"
+                   class="bg-marasy-gold hover:bg-marasy-goldLight text-marasy-dark font-extrabold py-3 px-6 rounded-full shadow-lg flex items-center gap-2.5 transition transform hover:scale-105">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                    <span data-i18n="footer_whatsapp_btn" class="text-sm">حجز واتساب</span>
+                </a>
+            </div>
+
+            <!-- بيانات الكافيه والروابط في المنتصف -->
+            <div class="text-center flex-1">
+                <h3 class="text-marasy-gold font-bold text-xl mb-2"><span data-i18n="brand_name">مراسي كافيه</span> | Marasy Cafe</h3>
+                <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-4">
+                    <span data-i18n="footer_address">التجمع الخامس، قسم أول القاهرة الجديدة • هاتف وواتساب:</span><br class="sm:hidden">
+                    <a href="tel:01000984344" dir="ltr" class="hover:text-marasy-gold transition font-semibold">01000984344</a>
+                </p>
+                <div class="flex justify-center items-center gap-4 mb-5">
+                    <a href="https://maps.google.com/?q=Marasy+cafe+New+Cairo" target="_blank" rel="noopener noreferrer" data-i18n="footer_maps_link" class="text-xs text-gray-300 hover:text-marasy-gold underline transition">رابط الموقع على خرائط جوجل</a>
+                    <span class="text-gray-600">|</span>
+                    <a href="bookings.html" data-i18n="footer_booking_link" class="text-xs text-gray-300 hover:text-marasy-gold underline transition">نموذج الحجز</a>
+                </div>
+                <p data-i18n="footer_copyright" class="text-gray-500 text-xs">© 2026 مراسي كافيه. جميع الحقوق محفوظة.</p>
+            </div>
+
+            <!-- عمود موازنة على اليمين في الديسكتوب لإبقاء النص في منتصف الشاشة بالضبط -->
+            <div class="hidden md:block w-36 shrink-0"></div>
+
+        </div>
+    </footer>
+
+    <!-- سكريبت السلايدر بنظام الزق البطيء كل 5 ثوانٍ -->
+    <script>
+        function initPushSlider(containerId, intervalMs) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            const slides = Array.from(container.querySelectorAll('.slide-img'));
+            if (slides.length <= 1) return;
+
+            let currentIndex = 0;
+
+            setInterval(() => {
+                const prevIndex = currentIndex;
+                currentIndex = (currentIndex + 1) % slides.length;
+
+                const oldSlide = slides[prevIndex];
+                const newSlide = slides[currentIndex];
+
+                slides.forEach(s => {
+                    if (s !== oldSlide && s !== newSlide) {
+                        s.className = 'slide-img';
+                    }
+                });
+
+                newSlide.className = 'slide-img prep-next';
+                void newSlide.offsetWidth;
+
+                oldSlide.className = 'slide-img push-out';
+                newSlide.className = 'slide-img slide-in';
+
+                setTimeout(() => {
+                    oldSlide.className = 'slide-img';
+                    newSlide.className = 'slide-img current';
+                }, 1850);
+
+            }, intervalMs);
+        }
+
+        function toggleLanguage() {
+            if (window.MarasyI18n) {
+                window.MarasyI18n.toggleLang();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initPushSlider('rightSlider', 5000);
+            initPushSlider('leftSlider', 5000);
+
+            const mobileBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
