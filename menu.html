@@ -359,7 +359,7 @@
 
         function handleImgError(imgEl, baseName) {
             const step = Number(imgEl.dataset.fallbackStep || 0);
-            const fallbacks = ['.png', '.webp', '.jpeg', '.JPG', '.PNG'];
+            const fallbacks = ['.jpg', '.jpeg', '.png', '.JPG', '.PNG'];
             if (step < fallbacks.length) {
                 imgEl.dataset.fallbackStep = String(step + 1);
                 imgEl.src = baseName + fallbacks[step];
